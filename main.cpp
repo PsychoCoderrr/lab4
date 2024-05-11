@@ -174,6 +174,22 @@ template <typename T> class BinaryTree
         }
         return startRoot;
     }
+    
+    Node<T>* search(Node<T>* startRoot, T value)
+    {
+        if (startRoot == nullptr || startRoot->Get() == value)
+        {
+            return startRoot;
+        }
+        if (value < startRoot->Get())
+        {
+            return search(startRoot->GetLeft(), value);
+        }
+        else
+        {
+            return search(startRoot->GetRight(), value);
+        }
+    }
 };
 
 int main(int argc, const char *argv[])
@@ -184,7 +200,8 @@ int main(int argc, const char *argv[])
     {
         testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
     }
-    
+    int b = (testTree.search(testTree.GetRoot(), 7))->Get();
+    std::cout << b<< std::endl;
     testTree.PrintPKL(testTree.GetRoot());
 
     return 0;
