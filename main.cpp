@@ -34,13 +34,22 @@ template <typename T> class Node
     {
         return right;
     }
-};
+    
+    void setLeft(Node<T>* node)
+    {
+        left = node;
+    }
+    void setRight(Node<T>* node)
+    {
+        right = node;
+    }
+    };
 
 template <typename T> class BinaryTree
 {
   private:
     int size;
-    Node<T> root;
+    Node<T>* root;
 
   public:
     BinaryTree<T>()
@@ -52,7 +61,6 @@ template <typename T> class BinaryTree
     ~BinaryTree<T>()
     {
         deleteTree(this->GetRoot());
-        delete this;
     }
 
     void deleteTree(Node<T> *elem)
@@ -69,6 +77,11 @@ template <typename T> class BinaryTree
     Node<T> *GetRoot()
     {
         return this->root;
+    }
+    
+    void setRoot(Node<T>* newRoot)
+    {
+        root = newRoot;
     }
 
     int GetSize()
@@ -141,10 +154,38 @@ template <typename T> class BinaryTree
         std::cout << "(" << elem->Get() << ") ";
         PrintPKL(elem->GetLeft());
     }
+    
+    Node<T>* insert(Node<T>* startRoot, T value)
+    {
+        
+        if (startRoot == nullptr)
+        {
+            size++;
+            return new Node<T>(value);
+            
+        }
+        else if (value < startRoot->Get())
+        {
+            startRoot->setLeft(insert(startRoot->GetLeft(), value));
+        }
+        else if (value > startRoot->Get())
+        {
+            startRoot->setRight(insert(startRoot->GetRight(), value));
+        }
+        return startRoot;
+    }
 };
 
 int main(int argc, const char *argv[])
 {
+    int a[] = {5, 4, 6, 7, 3, 8};
+    BinaryTree<int> testTree;
+    for (int i = 0; i < 6; i++)
+    {
+        testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
+    }
+    
+    testTree.PrintPKL(testTree.GetRoot());
 
     return 0;
 }
