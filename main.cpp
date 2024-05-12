@@ -34,22 +34,27 @@ template <typename T> class Node
     {
         return right;
     }
-    
-    void setLeft(Node<T>* node)
+
+    void setLeft(Node<T> *node)
     {
         left = node;
     }
-    void setRight(Node<T>* node)
+    void setRight(Node<T> *node)
     {
         right = node;
     }
-    };
+    
+    void SetData(T value)
+    {
+        this->data = value;
+    }
+};
 
 template <typename T> class BinaryTree
 {
   private:
     int size;
-    Node<T>* root;
+    Node<T> *root;
 
   public:
     BinaryTree<T>()
@@ -78,8 +83,8 @@ template <typename T> class BinaryTree
     {
         return this->root;
     }
-    
-    void setRoot(Node<T>* newRoot)
+
+    void setRoot(Node<T> *newRoot)
     {
         root = newRoot;
     }
@@ -132,6 +137,24 @@ template <typename T> class BinaryTree
         PrintPLK(elem->GetLeft());
         std::cout << "(" << elem->Get() << ") ";
     }
+    
+    Node<T>* minimum(Node<T>* startRoot)
+    {
+        if (startRoot->GetLeft() == nullptr)
+        {
+            return startRoot;
+        }
+        return minimum(startRoot->GetLeft());
+    }
+    
+    Node<T>* maximum(Node<T>* startRoot)
+    {
+        if (startRoot->GetRight() == nullptr)
+        {
+            return startRoot;
+        }
+        return minimum(startRoot->GetRight());
+    }
 
     void PrintLKP(Node<T> *elem) // обход ЛКП  или инфиксный обход
     {
@@ -154,15 +177,14 @@ template <typename T> class BinaryTree
         std::cout << "(" << elem->Get() << ") ";
         PrintPKL(elem->GetLeft());
     }
-    
-    Node<T>* insert(Node<T>* startRoot, T value)
+
+    Node<T> *insert(Node<T> *startRoot, T value)
     {
-        
+
         if (startRoot == nullptr)
         {
             size++;
             return new Node<T>(value);
-            
         }
         else if (value < startRoot->Get())
         {
@@ -174,8 +196,8 @@ template <typename T> class BinaryTree
         }
         return startRoot;
     }
-    
-    Node<T>* search(Node<T>* startRoot, T value)
+
+    Node<T> *search(Node<T> *startRoot, T value)
     {
         if (startRoot == nullptr || startRoot->Get() == value)
         {
@@ -190,6 +212,43 @@ template <typename T> class BinaryTree
             return search(startRoot->GetRight(), value);
         }
     }
+
+    Node<T> *deleteElem(Node<T> *startRoot, T value)
+    {
+        if (startRoot == nullptr)
+        {
+            return startRoot;
+        }
+        if (value < startRoot->Get())
+        {
+            startRoot->setLeft(deleteElem(startRoot->GetLeft(), value));
+        }
+        else if (value > startRoot->Get())
+        {
+            startRoot->setRight(deleteElem(startRoot->GetRight(), value));
+        }
+        else if (startRoot->GetLeft() != nullptr && startRoot->GetRight())
+        {
+            startRoot->SetData(minimum(startRoot->GetRight())->Get());
+            startRoot->setRight(deleteElem(startRoot->GetRight(), value));
+        }
+        else
+        {
+            if(startRoot->GetLeft() != nullptr)
+            {
+                startRoot = startRoot->GetLeft();
+            }
+            else if (startRoot->GetRight() != nullptr)
+            {
+                startRoot = startRoot->GetRight();
+            }
+            else
+            {
+                startRoot = nullptr;
+            }
+        }
+        return startRoot;
+    }
 };
 
 int main(int argc, const char *argv[])
@@ -201,8 +260,10 @@ int main(int argc, const char *argv[])
         testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
     }
     int b = (testTree.search(testTree.GetRoot(), 7))->Get();
-    std::cout << b<< std::endl;
+    std::cout << b << std::endl;
     testTree.PrintPKL(testTree.GetRoot());
-
+    std::cout << std::endl;
+    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
+    testTree.PrintPKL(testTree.GetRoot());
     return 0;
 }
