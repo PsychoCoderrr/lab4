@@ -43,7 +43,7 @@ template <typename T> class Node
     {
         right = node;
     }
-    
+
     void SetData(T value)
     {
         this->data = value;
@@ -137,8 +137,8 @@ template <typename T> class BinaryTree
         PrintPLK(elem->GetLeft());
         std::cout << "(" << elem->Get() << ") ";
     }
-    
-    Node<T>* minimum(Node<T>* startRoot)
+
+    Node<T> *minimum(Node<T> *startRoot)
     {
         if (startRoot->GetLeft() == nullptr)
         {
@@ -146,8 +146,8 @@ template <typename T> class BinaryTree
         }
         return minimum(startRoot->GetLeft());
     }
-    
-    Node<T>* maximum(Node<T>* startRoot)
+
+    Node<T> *maximum(Node<T> *startRoot)
     {
         if (startRoot->GetRight() == nullptr)
         {
@@ -234,7 +234,7 @@ template <typename T> class BinaryTree
         }
         else
         {
-            if(startRoot->GetLeft() != nullptr)
+            if (startRoot->GetLeft() != nullptr)
             {
                 startRoot = startRoot->GetLeft();
             }
