@@ -149,5 +149,37 @@ class complex
             return false;
         }
     }
+    
+    bool operator > (complex item)
+    {
+        if (this->Re > item.GetRe())
+        {
+            return true;
+        }
+        else if (this->Re == item.GetRe() && this->Im > item.GetIm())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    bool operator < (complex item)
+    {
+        if (this->Re < item.GetRe())
+        {
+            return true;
+        }
+        else if (this->Re == item.GetRe() && this->Im > item.GetIm())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 };
 
