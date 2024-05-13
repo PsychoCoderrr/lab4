@@ -228,7 +228,7 @@ template <typename T> class BinaryTree
         {
             startRoot->setRight(deleteElem(startRoot->GetRight(), value));
         }
-        else if (startRoot->GetLeft() != nullptr && startRoot->GetRight())
+        else if (startRoot->GetLeft() != nullptr && startRoot->GetRight() != nullptr)
         {
             startRoot->SetData(minimum(startRoot->GetRight())->Get());
             startRoot->setRight(deleteElem(startRoot->GetRight(), value));
@@ -266,5 +266,6 @@ int main(int argc, const char *argv[])
     std::cout << std::endl;
     testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
     testTree.PrintPKL(testTree.GetRoot());
+    std::cout << std::endl;
     return 0;
 }
