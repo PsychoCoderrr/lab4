@@ -56,6 +56,17 @@ template <typename T> class BinaryTree
   private:
     int size;
     Node<T> *root;
+    
+    void FuncMap(Node<T>* startRoot, T(*func)(T))
+    {
+        if (startRoot == nullptr)
+        {
+            return;
+        }
+        FuncMap(startRoot->GetLeft(), func);
+        FuncMap(startRoot->GetRight(), func);
+        startRoot->SetData(func(startRoot->Get()));
+    }
 
   public:
     BinaryTree<T>()
@@ -250,7 +261,17 @@ template <typename T> class BinaryTree
         }
         return startRoot;
     }
+    
+    void map(T(*func)(T))
+    {
+        this->FuncMap(this->GetRoot(), func);
+    }
 };
+
+int testMapFunc(int i)
+{
+    return i*i;
+}
 
 int main(int argc, const char *argv[])
 {
@@ -264,7 +285,10 @@ int main(int argc, const char *argv[])
     std::cout << b << std::endl;
     testTree.PrintPKL(testTree.GetRoot());
     std::cout << std::endl;
-    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
+//    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
+//    testTree.PrintPKL(testTree.GetRoot());
+//    std::cout << std::endl;
+    testTree.map(&testMapFunc);
     testTree.PrintPKL(testTree.GetRoot());
     std::cout << std::endl;
     return 0;
