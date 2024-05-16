@@ -266,8 +266,26 @@ template <typename T> class BinaryTree
     {
         this->FuncMap(this->GetRoot(), func);
     }
+    
+    
+    
 };
+template <typename T>
+void printTree(Node<T>* node, int space, int height) {
+        if (node == nullptr)
+            return;
 
+        space += height;
+
+        printTree(node->GetRight(), space, height);
+
+        std::cout << std::endl;
+        for (int i = height; i < space; ++i)
+            std::cout << " ";
+        std::cout << node->Get() << "\n";
+
+        printTree(node->GetLeft(), space, height);
+    }
 int testMapFunc(int i)
 {
     return i*i;
@@ -275,21 +293,22 @@ int testMapFunc(int i)
 
 int main(int argc, const char *argv[])
 {
-    int a[] = {5, 4, 6, 7, 3, 8};
+    int a[] = {50, 45, 55, 40, 35, 44, 54, 56};
     BinaryTree<int> testTree;
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 8; i++)
     {
         testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
     }
-    int b = (testTree.search(testTree.GetRoot(), 7))->Get();
-    std::cout << b << std::endl;
+//    int b = (testTree.search(testTree.GetRoot(), 7))->Get();
+//    std::cout << b << std::endl;
     testTree.PrintPKL(testTree.GetRoot());
     std::cout << std::endl;
 //    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
 //    testTree.PrintPKL(testTree.GetRoot());
 //    std::cout << std::endl;
-    testTree.map(&testMapFunc);
-    testTree.PrintPKL(testTree.GetRoot());
+//    testTree.map(&testMapFunc);
+//    testTree.PrintPKL(testTree.GetRoot());
     std::cout << std::endl;
+    printTree(testTree.GetRoot(), 2, 5);
     return 0;
 }
