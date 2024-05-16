@@ -1,5 +1,6 @@
 #include "Complex.h"
 #include <iostream>
+#include "str_switch.h"
 
 template <typename T> class Node
 {
@@ -286,30 +287,119 @@ template <typename T> void PrintPKL(Node<T> *elem) // обход ПКЛ
     std::cout << "(" << elem->Get() << ") ";
     PrintPKL(elem->GetLeft());
 }
-
-int testMapFunc(int i)
+template <typename T>
+T testMapFunc(T i)
 {
     return i * i;
 }
 
 int main(int argc, const char *argv[])
 {
-    int a[] = {50, 45, 55, 40, 35, 44, 54, 56};
-    BinaryTree<int> testTree;
-    for (int i = 0; i < 8; i++)
+    BinaryTree<complex> testComplex;
+    BinaryTree<int> testInt;
+    int a;
+    complex b;
+    int countInt = 0;
+    int countCompl = 0;
+    int flag = 1;
+    std::string command;
+    while (flag)
     {
-        testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
+        std::cout<< "Enter your command";
+        std::getline(std::cin, command);
+        SWITCH(command)
+        {
+            CASE("IntElem"):
+            {
+                std::cout<<"Enter your element" << std::endl;
+                std::cin >> a;
+                testInt.insert(testInt.GetRoot(), a);
+                countInt += 1;
+            }
+            CASE("ComplElem"):
+            {
+                std::cout<<"Enter your element" << std::endl;
+                std::cin >> b;
+                testComplex.insert(testComplex.GetRoot(), b);
+                countCompl += 1;
+            }
+            CASE("IntKLP"):
+            {
+                PrintKLP(testInt.GetRoot());
+            }
+            CASE("IntKPL"):
+            {
+                PrintKPL(testInt.GetRoot());
+            }
+            CASE("IntLPK"):
+            {
+                PrintLPK(testInt.GetRoot());
+            }
+            CASE("IntPLK"):
+            {
+                PrintPLK(testInt.GetRoot());
+            }
+            CASE("IntLKP"):
+            {
+                PrintLKP(testInt.GetRoot());
+            }
+            CASE("IntPKL"):
+            {
+                PrintPKL(testInt.GetRoot());
+            }
+            CASE("ComplKLP"):
+            {
+                PrintKLP(testComplex.GetRoot());
+            }
+            CASE("ComplKPL"):
+            {
+                PrintKPL(testComplex.GetRoot());
+            }
+            CASE("ComplLPK"):
+            {
+                PrintLPK(testComplex.GetRoot());
+            }
+            CASE("ComplPLK"):
+            {
+                PrintPLK(testComplex.GetRoot());
+            }
+            CASE("ComplLKP"):
+            {
+                PrintLKP(testComplex.GetRoot());
+            }
+            CASE("ComplPKL"):
+            {
+                PrintPKL(testComplex.GetRoot());
+            }
+            CASE("IntFull"):
+            {
+                printTree((testInt.GetRoot()), 0, 5);
+            }
+            CASE("ComplFull"):
+            {
+                printTree((testComplex.GetRoot()), 0, 7);
+            }
+            CASE("IntMap"):
+            {
+                testInt.map(&testMapFunc);
+            }
+            CASE("ComplMap"):
+            {
+                testComplex.map(&testMapFunc);
+            }
+            CASE("DelIntEl"):
+            {
+                std::cout<< "Enter element you want to delete";
+                std::cin >> a;
+                testInt.deleteElem(testInt.GetRoot(), a);
+            }
+            CASE("DelComplEl"):
+            {
+                std::cout<< "Enter element you want to delete";
+                std::cin >> b;
+                testComplex.deleteElem(testComplex.GetRoot(), b);
+            }
+        }
     }
-    //    int b = (testTree.search(testTree.GetRoot(), 7))->Get();
-    //    std::cout << b << std::endl;
-    PrintPKL(testTree.GetRoot());
-    std::cout << std::endl;
-    //    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
-    //    testTree.PrintPKL(testTree.GetRoot());
-    //    std::cout << std::endl;
-    //    testTree.map(&testMapFunc);
-    //    testTree.PrintPKL(testTree.GetRoot());
-    std::cout << std::endl;
-    printTree(testTree.GetRoot(), 0, 5);
     return 0;
 }
