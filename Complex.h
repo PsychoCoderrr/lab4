@@ -149,8 +149,8 @@ class complex
             return false;
         }
     }
-    
-    bool operator > (complex item)
+
+    bool operator>(complex item)
     {
         if (this->Re > item.GetRe())
         {
@@ -165,8 +165,8 @@ class complex
             return false;
         }
     }
-    
-    bool operator < (complex item)
+
+    bool operator<(complex item)
     {
         if (this->Re < item.GetRe())
         {
@@ -182,4 +182,3 @@ class complex
         }
     }
 };
-

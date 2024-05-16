@@ -1,5 +1,5 @@
+#include "Complex.h"
 #include <iostream>
-#include"Complex.h"
 
 template <typename T> class Node
 {
@@ -56,8 +56,8 @@ template <typename T> class BinaryTree
   private:
     int size;
     Node<T> *root;
-    
-    void FuncMap(Node<T>* startRoot, T(*func)(T))
+
+    void FuncMap(Node<T> *startRoot, T (*func)(T))
     {
         if (startRoot == nullptr)
         {
@@ -106,59 +106,6 @@ template <typename T> class BinaryTree
         return this->size;
     }
 
-    void PrintKLP(Node<T> *elem) // обход КЛП или другими словами префиксный
-    {
-        if (elem == nullptr)
-        {
-            return;
-        }
-        std::cout << "(" << elem->Get() << ") ";
-        PrintKLP(elem->GetLeft());
-        PrintKLP(elem->GetRight());
-    }
-
-    void PrintKPL(Node<T> *elem) // обход КПЛ
-    {
-        if (elem == nullptr)
-        {
-            return;
-        }
-        std::cout << "(" << elem->Get() << ") ";
-        PrintPKL(elem->GetRight());
-        PrintPKL(elem->GetLeft());
-    }
-
-    void PrintLPK(Node<T> *elem) // обход ЛПК или постфиксный обход
-    {
-        if (elem == nullptr)
-        {
-            return;
-        }
-        PrintLPK(elem->GetLeft());
-        PrintLPK(elem->GetRight());
-        std::cout << "(" << elem->Get() << ") ";
-    }
-
-    void PrintPLK(Node<T> *elem) // обход ПЛК
-    {
-        if (elem == nullptr)
-        {
-            return;
-        }
-        PrintPLK(elem->GetRight());
-        PrintPLK(elem->GetLeft());
-        std::cout << "(" << elem->Get() << ") ";
-    }
-
-    Node<T> *minimum(Node<T> *startRoot)
-    {
-        if (startRoot->GetLeft() == nullptr)
-        {
-            return startRoot;
-        }
-        return minimum(startRoot->GetLeft());
-    }
-
     Node<T> *maximum(Node<T> *startRoot)
     {
         if (startRoot->GetRight() == nullptr)
@@ -168,26 +115,13 @@ template <typename T> class BinaryTree
         return minimum(startRoot->GetRight());
     }
 
-    void PrintLKP(Node<T> *elem) // обход ЛКП  или инфиксный обход
+    Node<T> *minimum(Node<T> *startRoot)
     {
-        if (elem == nullptr)
+        if (startRoot->GetLeft() == nullptr)
         {
-            return;
+            return startRoot;
         }
-        PrintLKP(elem->GetLeft());
-        std::cout << "(" << elem->Get() << ") ";
-        PrintLKP(elem->GetRight());
-    }
-
-    void PrintPKL(Node<T> *elem) // обход ПКЛ
-    {
-        if (elem == nullptr)
-        {
-            return;
-        }
-        PrintPKL(elem->GetRight());
-        std::cout << "(" << elem->Get() << ") ";
-        PrintPKL(elem->GetLeft());
+        return minimum(startRoot->GetLeft());
     }
 
     Node<T> *insert(Node<T> *startRoot, T value)
@@ -261,34 +195,101 @@ template <typename T> class BinaryTree
         }
         return startRoot;
     }
-    
-    void map(T(*func)(T))
+
+    void map(T (*func)(T))
     {
         this->FuncMap(this->GetRoot(), func);
     }
-    
-    
-    
 };
+
 template <typename T>
-void printTree(Node<T>* node, int space, int height) {
-        if (node == nullptr)
-            return;
+void printTree(Node<T> *node, int space,
+               int height) // все функции, которые используют cout вынесены вне класса, как отдельные функции
 
-        space += height;
-
-        printTree(node->GetRight(), space, height);
-
-        std::cout << std::endl;
-        for (int i = height; i < space; ++i)
-            std::cout << " ";
-        std::cout << node->Get() << "\n";
-
-        printTree(node->GetLeft(), space, height);
+{
+    if (node == nullptr)
+    {
+        return;
     }
+    space += height;
+    printTree(node->GetRight(), space, height);
+    std::cout << std::endl;
+    for (int i = height; i < space; ++i)
+        std::cout << " ";
+    std::cout << node->Get() << "\n";
+
+    printTree(node->GetLeft(), space, height);
+}
+
+template <typename T> void PrintKLP(Node<T> *elem) // обход КЛП или другими словами префиксный
+{
+    if (elem == nullptr)
+    {
+        return;
+    }
+    std::cout << "(" << elem->Get() << ") ";
+    PrintKLP(elem->GetLeft());
+    PrintKLP(elem->GetRight());
+}
+
+template <typename T> void PrintKPL(Node<T> *elem) // обход КПЛ
+{
+    if (elem == nullptr)
+    {
+        return;
+    }
+    std::cout << "(" << elem->Get() << ") ";
+    PrintPKL(elem->GetRight());
+    PrintPKL(elem->GetLeft());
+}
+
+template <typename T> void PrintLPK(Node<T> *elem) // обход ЛПК или постфиксный обход
+{
+    if (elem == nullptr)
+    {
+        return;
+    }
+    PrintLPK(elem->GetLeft());
+    PrintLPK(elem->GetRight());
+    std::cout << "(" << elem->Get() << ") ";
+}
+
+template <typename T> void PrintPLK(Node<T> *elem) // обход ПЛК
+{
+    if (elem == nullptr)
+    {
+        return;
+    }
+    PrintPLK(elem->GetRight());
+    PrintPLK(elem->GetLeft());
+    std::cout << "(" << elem->Get() << ") ";
+}
+
+template <typename T> void PrintLKP(Node<T> *elem) // обход ЛКП  или инфиксный обход
+{
+    if (elem == nullptr)
+    {
+        return;
+    }
+    PrintLKP(elem->GetLeft());
+    std::cout << "(" << elem->Get() << ") ";
+    PrintLKP(elem->GetRight());
+}
+
+template <typename T> void PrintPKL(Node<T> *elem) // обход ПКЛ
+{
+    if (elem == nullptr)
+    {
+        return;
+    }
+    PrintPKL(elem->GetRight());
+    std::cout << "(" << elem->Get() << ") ";
+    PrintPKL(elem->GetLeft());
+}
+
 int testMapFunc(int i)
 {
-    return i*i;
+    return i * i;
 }
 
 int main(int argc, const char *argv[])
@@ -299,16 +300,16 @@ int main(int argc, const char *argv[])
     {
         testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
     }
-//    int b = (testTree.search(testTree.GetRoot(), 7))->Get();
-//    std::cout << b << std::endl;
-    testTree.PrintPKL(testTree.GetRoot());
+    //    int b = (testTree.search(testTree.GetRoot(), 7))->Get();
+    //    std::cout << b << std::endl;
+    PrintPKL(testTree.GetRoot());
     std::cout << std::endl;
-//    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
-//    testTree.PrintPKL(testTree.GetRoot());
-//    std::cout << std::endl;
-//    testTree.map(&testMapFunc);
-//    testTree.PrintPKL(testTree.GetRoot());
+    //    testTree.setRoot(testTree.deleteElem(testTree.GetRoot(), 7));
+    //    testTree.PrintPKL(testTree.GetRoot());
+    //    std::cout << std::endl;
+    //    testTree.map(&testMapFunc);
+    //    testTree.PrintPKL(testTree.GetRoot());
     std::cout << std::endl;
-    printTree(testTree.GetRoot(), 2, 5);
+    printTree(testTree.GetRoot(), 0, 5);
     return 0;
 }
