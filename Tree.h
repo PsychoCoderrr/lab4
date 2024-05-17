@@ -204,6 +204,7 @@ template <typename T> class BinaryTree
         }
         else
         {
+            size--;
             if (startRoot->GetLeft() != nullptr)
             {
                 startRoot = startRoot->GetLeft();

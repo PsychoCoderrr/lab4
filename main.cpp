@@ -3,11 +3,14 @@
 #include "str_switch.h"
 #include "func_for_print.h"
 #include "helpers_for_mapReduce.h"
-
+#include "tests.h"
 
 
 int main(int argc, const char *argv[])
 {
+    TestTree();
+    TestMapFunc();
+    testWhereFunc();
     BinaryTree<complex> testComplex;
     BinaryTree<int> testInt;
     int a;
