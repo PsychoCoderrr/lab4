@@ -1,9 +1,7 @@
 #pragma once
 #include "Tree.h"
 template <typename T>
-void printTree(Node<T> *node, int space,
-               int height) // все функции, которые используют cout вынесены вне класса, как отдельные функции
-
+void printTree(Node<T> *node, int space, int height) // все функции, которые используют cout вынесены вне класса, как отдельные функции
 {
     if (node == nullptr)
     {

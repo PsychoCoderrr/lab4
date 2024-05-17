@@ -230,9 +230,16 @@ template <typename T> class BinaryTree
         this->FuncWhere(this->GetRoot(), func);
     }
     
-    T reduce(T (*func)(T, T))
+    int reduce(T (*func)(T, T))
     {
-        T result = 0;
+        int result = 0;
+        this->ReduceFunc(this->GetRoot(), func, &result);
+        return result;
+    }
+    
+    complex reduceCompl(T (*func)(T, T))
+    {
+        complex result(0, 0);
         this->ReduceFunc(this->GetRoot(), func, &result);
         return result;
     }
