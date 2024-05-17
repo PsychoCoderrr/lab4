@@ -80,6 +80,17 @@ template <typename T> class BinaryTree
             this->deleteElem(this->root, startRoot->Get());
         }
     }
+    
+    void ReduceFunc(Node<T>* startRoot, T(*func)(T, T), T* base)
+    {
+        if (startRoot == nullptr)
+        {
+            return;
+        }
+        ReduceFunc(startRoot->GetLeft(), func, base);
+        ReduceFunc(startRoot->GetRight(), func, base);
+        *base = func(startRoot->Get(), *base);
+    }
 
   public:
     BinaryTree<T>()
@@ -219,8 +230,10 @@ template <typename T> class BinaryTree
         this->FuncWhere(this->GetRoot(), func);
     }
     
-    void reduce(int (*func)(T))
+    T reduce(T (*func)(T, T))
     {
-        
+        T result = 0;
+        this->ReduceFunc(this->GetRoot(), func, &result);
+        return result;
     }
 };

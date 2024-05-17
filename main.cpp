@@ -22,6 +22,13 @@ bool testWhereFunc(int i)
         return false;
     }
 }
+
+template <typename T>
+T testReduceFunc(T a, T b)
+{
+    return a+b;
+}
+
 int main(int argc, const char *argv[])
 {
 //    BinaryTree<complex> testComplex;
@@ -137,7 +144,9 @@ int main(int argc, const char *argv[])
         testTree.setRoot(testTree.insert(testTree.GetRoot(), a[i]));
     }
     printTree(testTree.GetRoot(), 0, 5);
-    testTree.where(&testWhereFunc);
+//    testTree.where(&testWhereFunc);
     printTree(testTree.GetRoot(), 0, 5);
+    int result = testTree.reduce(&testReduceFunc);
+    std::cout << result;
     return 0;
 }
