@@ -10,7 +10,7 @@ void StartUiPrint()
     std::cout << "You can use map and reduce for int and compl, commands for this func: <Type><Name of func>" << std::endl;
     std::cout << "You can use where for int, command for this func: IntWhere" << std::endl;
     std::cout << "You can print tree as tree, command for this func: <Type>Full" << std::endl;
-    std::cout << "You can print a SubTree after enetring an element you want to be a root of SubTree, commands: SubTreeInt and SubTreeCom";
+    std::cout << "You can print a SubTree after enetring an element you want to be a root of SubTree, commands: SubTreeInt and SubTreeCom" << std::endl;
 }
 
 void UiPrint()
@@ -21,5 +21,5 @@ void UiPrint()
     std::cout << "You can use map and reduce for int and compl, commands for this func: <Type><Name of func>" << std::endl;
     std::cout << "You can use where for int, command for this func: IntWhere" << std::endl;
     std::cout << "You can print tree as tree, command for this func: <Type>Full" << std::endl;
-    std::cout << "You can print a SubTree after enetring an element you want to be a root of SubTree, commands: SubTreeInt and SubTreeCom";
+    std::cout << "You can print a SubTree after enetring an element you want to be a root of SubTree, commands: SubTreeInt and SubTreeCom" << std::endl;
 }
