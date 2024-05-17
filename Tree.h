@@ -220,7 +220,23 @@ template <typename T> class BinaryTree
         }
         return startRoot;
     }
-
+    
+//    bool CompareTraverse(Node<T>* leaf1, Node<T>* leaf2)
+//    {
+//        if (leaf1->GetLeft() != nullptr  && leaf2->GetLeft() != nullptr)
+//        {
+//            if (CompareTraverse(leaf1->GetLeft, leaf2->GetLeft()) == false)
+//            {
+//                return false;
+//            }
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//        if (leaf1->Get())
+//    }
+    
     void map(T (*func)(T))  //список функций map-Reduce реализован как методы класса
     {
         this->FuncMap(this->GetRoot(), func);

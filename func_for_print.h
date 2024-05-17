@@ -82,3 +82,17 @@ template <typename T> void PrintPKL(Node<T> *elem) // обход ПКЛ
     std::cout << "(" << elem->Get() << ") ";
     PrintPKL(elem->GetLeft());
 }
+
+template <typename T>
+void printSubTree(BinaryTree<T>& mainTree, T item)
+{
+    Node<T>* intermediate = mainTree.search(mainTree.GetRoot(), item);
+    if (intermediate == nullptr)
+    {
+        std::cout << "No searching element in tree" << std::endl;
+    }
+    else
+    {
+        printTree(intermediate, 0, 5);
+    }
+}

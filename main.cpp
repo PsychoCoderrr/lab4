@@ -151,6 +151,18 @@ int main(int argc, const char *argv[])
                 testComplex.deleteElem(testComplex.GetRoot(), b);
                 break;
             }
+            CASE("SubTreeInt"):
+            {
+                std::cout<< "Enter element you want to use as start";
+                std::cin >> a;
+                printSubTree(testInt, a);
+            }
+            CASE("SubTreeCom"):
+            {
+                std::cout<< "Enter element you want to use as start";
+                std::cin >> b;
+                printSubTree(testComplex, b);
+            }
             CASE("Stop"):
             {
                 flag = 0;
