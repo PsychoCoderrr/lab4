@@ -4,7 +4,7 @@
 #include "func_for_print.h"
 #include "helpers_for_mapReduce.h"
 #include "tests.h"
-
+#include "UiPrint.h"
 
 int main(int argc, const char *argv[])
 {
@@ -17,10 +17,9 @@ int main(int argc, const char *argv[])
     complex b;
     int intReduceRes;
     complex ComplexReduceRes;
-    int countInt = 0;
-    int countCompl = 0;
     int flag = 1;
     std::string command;
+    StartUiPrint();
     while (flag)
     {
         std::cout<< "Enter your command" << std::endl;
@@ -32,7 +31,6 @@ int main(int argc, const char *argv[])
                 std::cout<<"Enter your element" << std::endl;
                 std::cin >> a;
                 testInt.setRoot(testInt.insert(testInt.GetRoot(), a));
-                countInt += 1;
                 break;
             }
             CASE("ComplElem"):
@@ -40,7 +38,6 @@ int main(int argc, const char *argv[])
                 std::cout<<"Enter your element" << std::endl;
                 std::cin >> b;
                 testComplex.setRoot(testComplex.insert(testComplex.GetRoot(), b));
-                countCompl += 1;
                 break;
             }
             CASE("IntKLP"):
@@ -145,7 +142,6 @@ int main(int argc, const char *argv[])
                 std::cout<< "Enter element you want to delete";
                 std::cin >> a;
                 testInt.deleteElem(testInt.GetRoot(), a);
-                countInt -= 1;
                 break;
             }
             CASE("DelComplEl"):
@@ -153,7 +149,6 @@ int main(int argc, const char *argv[])
                 std::cout<< "Enter element you want to delete";
                 std::cin >> b;
                 testComplex.deleteElem(testComplex.GetRoot(), b);
-                countCompl -= 1;
                 break;
             }
             CASE("Stop"):
@@ -166,6 +161,7 @@ int main(int argc, const char *argv[])
                 std::cout << "Unknown command" << std::endl;
             }
         }
+        UiPrint();
     }
     return 0;
 }
