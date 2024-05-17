@@ -182,9 +182,13 @@ class complex
         }
     }
     
-    complex operator=(complex item)
+    complex& operator=(const complex& item)
     {
-        complex res(item);
-        return res;
+        if (this != &item) 
+        {
+            Re = item.Re;
+            Im = item.Im;
+        }
+        return *this;
     }
 };
