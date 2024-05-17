@@ -181,4 +181,10 @@ class complex
             return false;
         }
     }
+    
+    complex operator=(complex item)
+    {
+        complex res(item);
+        return res;
+    }
 };

@@ -220,7 +220,7 @@ template <typename T> class BinaryTree
         return startRoot;
     }
 
-    void map(T (*func)(T))
+    void map(T (*func)(T))  //список функций map-Reduce реализован как методы класса
     {
         this->FuncMap(this->GetRoot(), func);
     }
