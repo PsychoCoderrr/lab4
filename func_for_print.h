@@ -1,5 +1,8 @@
 #pragma once
 #include "Tree.h"
+
+static std::string ch_hor = "-", ch_ver = "|", ch_ddia = "/", ch_rddia = "\\", ch_udia = "\\", ch_ver_hor = "|-", ch_udia_hor = "\\-", ch_ddia_hor = "/-", ch_ver_spa = "| ";
+
 template <typename T>
 void printTree(Node<T> *node, int space, int height) // все функции, которые используют cout вынесены вне класса, как отдельные функции
 {
@@ -11,10 +14,25 @@ void printTree(Node<T> *node, int space, int height) // все функции, �
     printTree(node->GetRight(), space, height);
     std::cout << std::endl;
     for (int i = height; i < space; ++i)
+    {
         std::cout << " ";
+    }
     std::cout << node->Get() << "\n";
 
     printTree(node->GetLeft(), space, height);
+}
+
+template <typename T>
+void printTreeNew(Node<T>* node, const std::string& rpref = "", const std::string& cpref = "", const std::string& lpref = "") {
+    if (!node) return;
+
+    if (node->GetRight())
+        printTreeNew(node->GetRight(), rpref + "  ", rpref + ch_ddia_hor, rpref + ch_ver_spa);
+
+    std::cout << cpref << std::to_string(node->Get()) << std::endl;
+
+    if (node->GetLeft())
+        printTreeNew(node->GetLeft(), lpref + ch_ver_spa, lpref + ch_udia_hor, lpref + "  ");
 }
 
 template <typename T> void PrintKLP(Node<T> *elem) // обход КЛП или другими словами префиксный
