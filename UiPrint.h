@@ -4,22 +4,22 @@ void StartUiPrint()
 {
     std::cout << "Hello, user"<< std::endl;
     std::cout << "You alredy have two created trees: Int and Complex"<< std::endl;
-    std::cout << "You can input elems, for this func input command: IntElem or ComplElem"<< std::endl;
-    std::cout << "You can go traverses for this trees, for this func input: <Type><Name of travers for example KPL>" << std::endl;
-    std::cout << "You can delete elems, commands for this func: DelIntEl and DelComplEl" << std::endl;
-    std::cout << "You can use map and reduce for int and compl, commands for this func: <Type><Name of func>" << std::endl;
-    std::cout << "You can use where for int, command for this func: IntWhere" << std::endl;
-    std::cout << "You can print tree as tree, command for this func: <Type>Full" << std::endl;
-    std::cout << "You can print a SubTree after enetring an element you want to be a root of SubTree, commands: SubTreeInt and SubTreeCom" << std::endl;
+    std::cout << "IntElem or ComplElem - comands to insert elements \nin int tree or in complex tree"<< std::endl;
+    std::cout << "<Type><Name of travers for example KPL> - command \nto go traverses for this trees" << std::endl;
+    std::cout << "DelIntEl and DelComplEl - commnds to delete elems" << std::endl;
+    std::cout << "<Type><Name of func> - commands to use map and \nreduce for int and compl" << std::endl;
+    std::cout << "IntWhere - command to use where for int" << std::endl;
+    std::cout << "<Type>Full - command to print tree as tree" << std::endl;
+    std::cout << "SubTreeInt and SubTreeCom - commands to print a \nSubTree after enetring an element you want to \nbe a root of SubTree" << std::endl;
 }
 
 void UiPrint()
 {
-    std::cout << "You can input elems, for this func input command: IntElem or ComplElem"<< std::endl;
-    std::cout << "You can go traverses for this trees, for this func input: <Type><Name of travers for example KPL>" << std::endl;
-    std::cout << "You can delete elems, commands for this func: DelIntEl and DelComplEl" << std::endl;
-    std::cout << "You can use map and reduce for int and compl, commands for this func: <Type><Name of func>" << std::endl;
-    std::cout << "You can use where for int, command for this func: IntWhere" << std::endl;
-    std::cout << "You can print tree as tree, command for this func: <Type>Full" << std::endl;
-    std::cout << "You can print a SubTree after enetring an element you want to be a root of SubTree, commands: SubTreeInt and SubTreeCom" << std::endl;
+    std::cout << "IntElem or ComplElem - comands to insert elements \nin int tree or in complex tree"<< std::endl;
+    std::cout << "<Type><Name of travers for example KPL> - command \nto go traverses for this trees" << std::endl;
+    std::cout << "DelIntEl and DelComplEl - commnds to delete elems" << std::endl;
+    std::cout << "<Type><Name of func> - commands to use map and \nreduce for int and compl" << std::endl;
+    std::cout << "IntWhere - command to use where for int" << std::endl;
+    std::cout << "<Type>Full - command to print tree as tree" << std::endl;
+    std::cout << "SubTreeInt and SubTreeCom - commands to print a \nSubTree after enetring an element you want to \nbe a root of SubTree" << std::endl;
 }

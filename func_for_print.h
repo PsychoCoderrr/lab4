@@ -1,5 +1,7 @@
 #pragma once
 #include "Tree.h"
+#include <string>
+#include <iostream>
 
 static std::string ch_hor = "-", ch_ver = "|", ch_ddia = "/", ch_rddia = "\\", ch_udia = "\\", ch_ver_hor = "|-", ch_udia_hor = "\\-", ch_ddia_hor = "/-", ch_ver_spa = "| ";
 
@@ -29,7 +31,7 @@ void printTreeNew(Node<T>* node, const std::string& rpref = "", const std::strin
     if (node->GetRight())
         printTreeNew(node->GetRight(), rpref + "  ", rpref + ch_ddia_hor, rpref + ch_ver_spa);
 
-    std::cout << cpref << std::to_string(node->Get()) << std::endl;
+    std::cout << cpref << node->Get() << std::endl;
 
     if (node->GetLeft())
         printTreeNew(node->GetLeft(), lpref + ch_ver_spa, lpref + ch_udia_hor, lpref + "  ");
